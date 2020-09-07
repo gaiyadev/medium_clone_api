@@ -41,6 +41,13 @@ Login endpoint
     @access    Private
  */
 
+Get a single  user 
+
+ /*  @route     GET api/users/id
+    @desc      Get a single user 
+    @access    Private
+ */
+
 ```
 
 ## Contributing

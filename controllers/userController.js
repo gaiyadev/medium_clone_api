@@ -131,6 +131,11 @@ exports.change_user_password = (req, res) => {
         }).catch(err => console.log(err));
 }
 
+/**
+ * Get a single user
+ * @param {*} req 
+ * @param {*} res 
+ */
 
 exports.get_user_by_id = (req, res) => {
     User.findOne({ _id: req.params.id }).then((user) => {
