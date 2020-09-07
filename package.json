@@ -22,9 +22,6 @@
     "nodemailer": "^6.4.11",
     "nodemailer-sendgrid-transport": "^0.2.0"
   },
-  "engines": {
-    "node": "12.x"
-  },
   "devDependencies": {
     "nodemon": "^2.0.4"
   }
