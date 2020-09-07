@@ -22,12 +22,12 @@ router.post('/login', UserController.sign_in);
     @access    Private
  */
 
-router.delete('/:id', UserController.delete_user);
+router.delete('/:id', auth, UserController.delete_user);
 /*  @route     POST api/users/id
     @desc      Update user password
     @access    Private
  */
-router.patch('/:id', UserController.change_user_password);
+router.patch('/:id', auth, UserController.change_user_password);
 /*  @route     GET api/users/id
     @desc      Get a single user 
     @access    Private

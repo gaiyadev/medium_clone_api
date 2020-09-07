@@ -99,7 +99,8 @@ exports.delete_user = (req, res) => {
         }))).
         catch(err => res.status(404).json({
             success: false,
-            err
+            message: 'No user found',
+            err: err
         }))
 }
 
