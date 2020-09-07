@@ -1,6 +1,6 @@
 # Medium Clone
 
-As the name implies, is an ExpressJs API built to be consume by Flutter application in repo "medium_clone_flutter" the app is having medium functionality
+As the name implies, is an ExpressJs API built to be consume by Flutter application in repo "medium_clone_ui" the app is having medium functionalities
 
 ## Installation
 
@@ -13,30 +13,32 @@ npm install
 ## API Endpoints
 
 ```python
-Register Endpoint
+Register Endpoint (Documentation)
+
+   @BaseURL = https://medium-clone-v1-expressjs-api.herokuapp.com/
 
 /*  @route     POST api/users/register
-    @desc      Sign up a user
+    @desc      Register up a user
     @access    Public
  */
 
 Login Endpoint
 
 /*  @route     POST api/users/login
-    @desc      Sign In a user
+    @desc      Login In a user
     @access    Public
  */
 
  Delete an Account Endpoint
 
-/*  @route     DELETE api/users/username
-    @desc      Delete In a user
+/*  @route     DELETE api/users/id
+    @desc      Delete user account
     @access    Private
  */
 
   Password account Endpoint
 
-/*  @route     PATCH api/users/username
+/*  @route     PATCH api/users/id
     @desc      Change user password
     @access    Private
  */
@@ -49,6 +51,14 @@ Get a single  user  Endpoint
  */
 
 ```
+
+## Features
++ User registration
++ User login
++ User change password
++ User delete account
++ Create blog Post
++ 
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
