@@ -1,6 +1,6 @@
 # Medium Clone
 
-As the name implies, is an ExpressJs API built to be consume by Flutter application in repo "medium_clone_flutter" the app ia having medium functionality
+As the name implies, is an ExpressJs API built to be consume by Flutter application in repo "medium_clone_flutter" the app is having medium functionality
 
 ## Installation
 
@@ -13,35 +13,35 @@ npm install
 ## API Endpoints
 
 ```python
-Register endpoint
+Register Endpoint
 
 /*  @route     POST api/users/register
     @desc      Sign up a user
     @access    Public
  */
 
-Login endpoint
+Login Endpoint
 
 /*  @route     POST api/users/login
     @desc      Sign In a user
     @access    Public
  */
 
- Delete a account endpoint
+ Delete an Account Endpoint
 
 /*  @route     DELETE api/users/username
     @desc      Delete In a user
     @access    Private
  */
 
-  Password account endpoint
+  Password account Endpoint
 
 /*  @route     PATCH api/users/username
     @desc      Change user password
     @access    Private
  */
 
-Get a single  user 
+Get a single  user  Endpoint
 
  /*  @route     GET api/users/id
     @desc      Get a single user 

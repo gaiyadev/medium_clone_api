@@ -1,4 +1,5 @@
 const UserController = require('../../controllers/userController');
+const auth = require('../../middleware/auth');
 var express = require('express');
 var router = express.Router();
 
@@ -31,7 +32,7 @@ router.patch('/:id', UserController.change_user_password);
     @desc      Get a single user 
     @access    Private
  */
-router.get('/:id', UserController.get_user_by_id);
+router.get('/:id', auth, UserController.get_user_by_id);
 
 
 
