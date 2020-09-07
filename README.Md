@@ -34,10 +34,10 @@ Login endpoint
     @access    Private
  */
 
-  Update account endpoint
+  Password account endpoint
 
 /*  @route     PATCH api/users/username
-    @desc      Update user account
+    @desc      Change user password
     @access    Private
  */
 

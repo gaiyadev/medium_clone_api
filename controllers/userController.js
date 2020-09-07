@@ -129,7 +129,6 @@ exports.change_user_password = (req, res) => {
                 })
             });
         }).catch(err => console.log(err));
-
 }
 
 
