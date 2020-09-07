@@ -1,7 +1,6 @@
+const UserController = require('../../controllers/userController');
 var express = require('express');
 var router = express.Router();
-const UserController = require('../../controllers/userController');
-const { post } = require('..');
 
 
 
@@ -16,6 +15,13 @@ router.post('/register', UserController.sign_up);
     @access    Public
  */
 router.post('/login', UserController.sign_in);
+
+/*  @route     POST api/users/login
+    @desc      Sign In a user
+    @access    Public
+ */
+router.delete('/login', UserController.sign_in);
+
 
 
 module.exports = router;

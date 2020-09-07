@@ -1,7 +1,6 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const bcrypt = require('bcrypt');
 
 /*
  * *Sign in a new user
@@ -9,8 +8,8 @@ const bcrypt = require('bcrypt');
  * @param {*} res
  */
 exports.sign_in = (req, res) => {
-    const { username, email, password } = req.body;
-    if (!username || !email || !password) {
+    const { email, password } = req.body;
+    if (!email || !password) {
         return res.status(400).json({
             error: 'Please all fields are required'
         });
@@ -25,7 +24,7 @@ exports.sign_in = (req, res) => {
             } else {
                 // success login ... Generating jwt for auth
                 jwt.sign({ _id: user._id, email: user.email, name: user.name },
-                    config.get('JWT_SECRET_KEY'),
+                    config.get('MD_SECRET_KEY'),
                     {
                         expiresIn: 3600
                     }, (err, token) => {
@@ -35,11 +34,8 @@ exports.sign_in = (req, res) => {
                             user: {
                                 _id: user._id,
                                 email: user.email,
-                                name: user.name,
-                                pic: user.pic
+                                username: user.name,
                             },
-                            following: user.following,
-                            followers: user.followers,
                             message: "Sign in successfully"
                         });
                     });
@@ -62,7 +58,8 @@ exports.sign_up = (req, res) => {
             error: 'Please all fields are required'
         });
     }
-    if (name.length <= 3 || password.length <= 4) {
+
+    if (username.length <= 3 || password.length <= 4) {
         return res.status(400).json({
             error: 'Please all fields muts be atleast more than 3 characters'
         });
@@ -70,7 +67,7 @@ exports.sign_up = (req, res) => {
     User.findOne({ email: email }).then(user => {
         if (user) return res.status(400).json({ error: 'User already exist' });
         const newUser = new User({
-            name: name,
+            username: username,
             email: email,
             password: password,
         });
