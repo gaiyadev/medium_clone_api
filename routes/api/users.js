@@ -16,11 +16,17 @@ router.post('/register', UserController.sign_up);
  */
 router.post('/login', UserController.sign_in);
 
-/*  @route     POST api/users/login
-    @desc      Sign In a user
-    @access    Public
+/*  @route     DELETE api/users/id
+    @desc      Delete In a user
+    @access    Private
  */
-router.delete('/login', UserController.sign_in);
+
+router.delete('/:id', UserController.delete_user);
+/*  @route     POST api/users/id
+    @desc      Update user password
+    @access    Private
+ */
+router.patch('/:id', UserController.change_user_password);
 
 
 

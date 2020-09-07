@@ -21,19 +21,26 @@ Register endpoint
  */
 
 Login endpoint
+
 /*  @route     POST api/users/login
     @desc      Sign In a user
     @access    Public
  */
-/*  @route     POST api/users/login
-    @desc      Delete user details
+
+ Delete a account endpoint
+
+/*  @route     DELETE api/users/username
+    @desc      Delete In a user
     @access    Private
  */
 
-/*  @route     POST api/users/login
-    @desc      Update user details
+  Update account endpoint
+
+/*  @route     PATCH api/users/username
+    @desc      Update user account
     @access    Private
  */
+
 ```
 
 ## Contributing

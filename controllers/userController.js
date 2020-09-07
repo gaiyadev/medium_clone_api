@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const bcrypt = require('bcrypt');
 
 /*
  * *Sign in a new user
@@ -83,3 +84,42 @@ exports.sign_up = (req, res) => {
         console.log(err);
     });
 };
+
+/**
+ * Delete user account
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.delete_user = (req, res) => {
+
+
+}
+
+/**
+ * Change user password
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.change_user_password = (req, res) => {
+    const newPassword = req.body.password;
+    User.findOne({ _id: req.params.id })
+        .then(user => {
+            if (!user) {
+                return res.status(422).json({
+                    error: "User doesn't exist"
+                });
+            }
+            bcrypt.hash(newPassword, 10).then(hashPassword => {
+                user.password = hashPassword;
+                user.save().then(saveUser => {
+                    return res.json({
+                        message: "Password changed successfully",
+                        saveUser,
+                    });
+                })
+            });
+        }).catch(err => console.log(err));
+
+}
+
+
