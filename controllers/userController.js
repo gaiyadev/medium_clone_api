@@ -91,9 +91,19 @@ exports.sign_up = (req, res) => {
  * @param {*} res 
  */
 exports.delete_user = (req, res) => {
-
+    User.findById(req.params.id).then(id => id.remove().
+        then(() => res.status(200).json({
+            message: 'Account deleted successfully',
+            id
+        }))).
+        catch(err => res.status(404).json({
+            success: false,
+            err
+        }))
 
 }
+
+
 
 /**
  * Change user password
