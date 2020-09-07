@@ -27,6 +27,11 @@ router.delete('/:id', UserController.delete_user);
     @access    Private
  */
 router.patch('/:id', UserController.change_user_password);
+/*  @route     GET api/users/id
+    @desc      Get a single user 
+    @access    Private
+ */
+router.get('/:id', UserController.get_user_by_id);
 
 
 

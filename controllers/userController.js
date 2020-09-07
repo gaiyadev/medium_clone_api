@@ -10,6 +10,7 @@ const bcrypt = require('bcrypt');
  */
 exports.sign_in = (req, res) => {
     const { email, password } = req.body;
+
     if (!email || !password) {
         return res.status(400).json({
             error: 'Please all fields are required'
@@ -100,7 +101,6 @@ exports.delete_user = (req, res) => {
             success: false,
             err
         }))
-
 }
 
 
@@ -132,3 +132,14 @@ exports.change_user_password = (req, res) => {
 }
 
 
+exports.get_user_by_id = (req, res) => {
+    User.findOne({ _id: req.params.id }).then((user) => {
+        return res.json({
+            user: user,
+        })
+    }).catch(() => {
+        return res.status(404).json({
+            message: "No user found"
+        });
+    })
+}
