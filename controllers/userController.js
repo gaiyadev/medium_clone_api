@@ -149,3 +149,48 @@ exports.get_user_by_id = (req, res) => {
         });
     })
 }
+
+/**
+ * Checking if email already exist
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.email_alreadyExist = (req, res) => {
+    User.findOne({ email: req.params.email }).then((result) => {
+        if (result) {
+            return res.json({
+                status: true,
+                message: 'Email already taken',
+            });
+        } else {
+            return res.json({
+                status: false,
+                message: 'Yeah... ',
+            });
+        }
+    }).catch((err) => {
+        console.log(err);
+    });
+}
+/**
+ * Checking if Username already exist
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.username_alreadyExist = (req, res) => {
+    User.findOne({ username: req.params.username }).then((result) => {
+        if (result) {
+            return res.json({
+                status: true,
+                message: 'Username already taken',
+            });
+        } else {
+            return res.json({
+                status: false,
+                message: 'Yeah...',
+            });
+        }
+    }).catch((err) => {
+        console.log(err);
+    });
+}

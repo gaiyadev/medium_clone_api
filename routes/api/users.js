@@ -34,6 +34,16 @@ router.patch('/:id', auth, UserController.change_user_password);
  */
 router.get('/:id', auth, UserController.get_user_by_id);
 
+/*  @route     GET api/users/:email
+    @desc      CHecking if user email already exits
+    @access    Public
+ */
+router.get('/:email', UserController.email_alreadyExist);
+/*  @route     GET api/users/:username
+    @desc      Checking if username already exits
+    @access    Public
+ */
+router.get('/:username', UserController.username_alreadyExist);
 
 
 module.exports = router;

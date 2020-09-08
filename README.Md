@@ -45,9 +45,23 @@ Login Endpoint
 
 Get a single  user  Endpoint
 
- /*  @route     GET api/users/id
+ /* @route     GET api/users/id
     @desc      Get a single user 
     @access    Private
+ */
+
+ CHecking if user email already exits
+
+ /* @route     GET api/users/:email
+    @desc      CHecking if user email already exits
+    @access    Public
+ */
+
+  CHecking if username already exits
+
+ /* @route     GET api/users/:username
+    @desc      Checking if username already exits
+    @access    Public
  */
 
 ```
