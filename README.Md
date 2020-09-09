@@ -52,14 +52,14 @@ Get a single  user  Endpoint
 
  CHecking if user email already exits
 
- /* @route     GET api/users/:email
+ /* @route     GET api/users/checkemail/:email
     @desc      CHecking if user email already exits
     @access    Public
  */
 
   CHecking if username already exits
 
- /* @route     GET api/users/:username
+ /* @route     GET api/users/username/:username
     @desc      Checking if username already exits
     @access    Public
  */
