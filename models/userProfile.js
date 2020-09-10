@@ -32,8 +32,10 @@ const ProfileSchema = new mongoose.Schema({
         default: 'image.jpg',
     },
 
-    timestamps: true,
-
+    reg_date: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 const UserProfile = mongoose.model('UserProfile', ProfileSchema);

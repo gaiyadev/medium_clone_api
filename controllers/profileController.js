@@ -17,7 +17,6 @@ exports.create_new_user_profile = async (req, res) => {
             dob: dob,
             title: title,
             about: about,
-
         });
         await UserProfile.newUserProfile(newUserProfile, (err, newUserProfile) => {
             if (err) return err;
