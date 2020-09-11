@@ -64,6 +64,13 @@ Get a single  user  Endpoint
     @access    Public
  */
 
+Create user profile
+
+ /*  @route    POST api/users/profile/add
+    @desc      Add new user profile
+    @access    Private
+ */
+
 ```
 
 ## Features
