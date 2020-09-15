@@ -1,6 +1,7 @@
 const auth = require('../../middleware/auth');
 const ProfileController = require('../../controllers/profileController');
 const multer = require('multer');
+const UserProfile = require("../../models/userProfile");
 const path = require('path');
 var express = require('express');
 var router = express.Router();
@@ -16,7 +17,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     limits: {
-        fileSize: 50000000
+        fileSize: 150000000
     },
     fileFilter: (req, file, cb) => {
         // allow images only
@@ -49,8 +50,8 @@ router.patch('/add/image', auth, upload.single('profile_image'), async (req, res
             }
         }, { new: true },
         (err, profileImage) => {
-            if (err) return res.status(500).json(err);
-            return res.status.json({
+            if (err) return res.status(500).json({ err });
+            return res.json({
                 message: "image added successfully",
                 data: profileImage,
 
