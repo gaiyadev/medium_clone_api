@@ -60,8 +60,6 @@ router.patch('/add/image', auth, upload.single('profile_image'), async (req, res
     );
 });
 
-
-
 /*  @route     PATCH api/users/profile/update
     @desc      Update user profile
     @access    Private
@@ -74,7 +72,7 @@ router.patch('/update', auth, ProfileController.update_user_profile);
     @access    Private
  */
 
-router.patch('/getData', auth, ProfileController.get_user_profile_data);
+router.get('/getData', auth, ProfileController.get_user_profile_data);
 
 
 module.exports = router;
