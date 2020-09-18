@@ -60,24 +60,29 @@ exports.update_user_profile = async (req, res) => {
             error: 'Please all fields are required'
         });
     } else {
-        await UserProfile.findByIdAndUpdate({ _id: id }, {
+        const data = {
             name: name,
             profession: profession,
             dob: dob,
             title: title,
-            about: about
-        }, (err, user) => {
-            if (err) throw err;
-            if (user == null) return res.status(404).json({ message: 'User not found' });
+            about: about,
+        };
+        UserProfile.findByIdAndUpdate(req.body.postId, {
+            $push: { userProfiles: data },
+
+        }, {
+            new: true
+        }).exec((err, user) => {
+            if (err) return res.status(422).json({ error: err })
             return res.json({
                 message: "Profile updated successfully",
                 user,
             });
-        });
+        })
     }
 
 }
-/**
+/** 
  * Getting user profily
  * 
  * @param {*} req 
