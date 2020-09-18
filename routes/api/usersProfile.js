@@ -61,4 +61,13 @@ router.patch('/add/image', auth, upload.single('profile_image'), async (req, res
 });
 
 
+
+/*  @route     PATCH api/users/profile/update
+    @desc      Update user profile
+    @access    Private
+ */
+
+router.post('/update/:id', auth, ProfileController.update_user_profile);
+
+
 module.exports = router;

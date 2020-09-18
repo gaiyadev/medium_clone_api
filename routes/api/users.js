@@ -39,7 +39,7 @@ router.patch('/:id', auth, UserController.change_user_password);
 router.get('/:id', auth, UserController.get_user_by_id);
 
 /*  @route     GET api/users/:email
-    @desc      CHecking if user email already exits
+    @desc      Checking if user email already exits
     @access    Public
  */
 

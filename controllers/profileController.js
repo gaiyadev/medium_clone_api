@@ -46,3 +46,33 @@ exports.create_new_user_profile = async (req, res) => {
         });
     }
 }
+
+/**
+ * Update users profile
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.update_user_profile = (req, res) => {
+    let id = req.params.id;
+    const { name, profession, dob, title, about } = req.body;
+    if (!name || !profession || !dob || !title || !about) {
+        return res.status(400).json({
+            error: 'Please all fields are required'
+        });
+    } else {
+        await UserProfile.update({ _id: id }, {
+            name: name,
+            profession: profession,
+            dob: dob,
+            title: title,
+            about: about
+        }, (err) => {
+            if (err) throw err;
+            return res.json({
+                message: "Profile updated successfully",
+                newUserProfile
+            });
+        });
+    }
+
+}
