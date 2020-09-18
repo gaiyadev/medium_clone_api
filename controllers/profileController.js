@@ -68,7 +68,7 @@ exports.update_user_profile = async (req, res) => {
             about: about,
         };
         UserProfile.findByIdAndUpdate(req.user._id, {
-            $push: { userProfiles: data },
+            $push: { userprofiles: data },
 
         }, {
             new: true
