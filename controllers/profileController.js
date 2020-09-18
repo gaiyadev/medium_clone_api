@@ -52,7 +52,7 @@ exports.create_new_user_profile = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-exports.update_user_profile = (req, res) => {
+exports.update_user_profile = async (req, res) => {
     let id = req.user._id;
     const { name, profession, dob, title, about } = req.body;
     if (!name || !profession || !dob || !title || !about) {
@@ -78,12 +78,13 @@ exports.update_user_profile = (req, res) => {
 
 }
 /**
- * Getting user profile
+ * Getting user profily
+ * 
  * @param {*} req 
  * @param {*} res 
  */
-exports.get_user_profile_data = (req, res) => {
-    UserProfile.findOne({ _id: req.user._id }, (err, user) => {
+exports.get_user_profile_data = async (req, res) => {
+    await UserProfile.findOne({ _id: req.user._id }, (err, user) => {
         if (err) return res.status(404).json({ err: err });
         if (user == null) return res.status(404).json({ message: 'User not found' });
         return res.json({ user: user });
