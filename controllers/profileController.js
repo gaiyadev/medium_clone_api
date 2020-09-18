@@ -53,7 +53,7 @@ exports.create_new_user_profile = async (req, res) => {
  * @param {*} res 
  */
 exports.update_user_profile = (req, res) => {
-    let id = req.params.id;
+    let id = req.user._id;
     const { name, profession, dob, title, about } = req.body;
     if (!name || !profession || !dob || !title || !about) {
         return res.status(400).json({
@@ -66,11 +66,12 @@ exports.update_user_profile = (req, res) => {
             dob: dob,
             title: title,
             about: about
-        }, (err) => {
+        }, (err, user) => {
             if (err) throw err;
+            if (user == null) return res.status(404).json({ message: 'User not found' });
             return res.json({
                 message: "Profile updated successfully",
-                newUserProfile
+                user,
             });
         });
     }

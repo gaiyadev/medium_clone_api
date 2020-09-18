@@ -67,7 +67,7 @@ router.patch('/add/image', auth, upload.single('profile_image'), async (req, res
     @access    Private
  */
 
-router.patch('/update/:id', auth, ProfileController.update_user_profile);
+router.patch('/update', auth, ProfileController.update_user_profile);
 
 /*  @route     GET api/users/profile/getData
     @desc      Get user profile
