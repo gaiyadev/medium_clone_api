@@ -53,27 +53,28 @@ exports.create_new_user_profile = async (req, res) => {
  * @param {*} res 
  */
 exports.update_user_profile = async (req, res) => {
-    let id = req.user._id;
     const { name, profession, dob, title, about } = req.body;
     if (!name || !profession || !dob || !title || !about) {
         return res.status(400).json({
             error: 'Please all fields are required'
         });
     } else {
-        await UserProfile.update({ _id: id }, {
+        await UserProfile.update({ _id: req.user._id }, {
             name: name,
             profession: profession,
             dob: dob,
             title: title,
             about: about
-        }, (err, user) => {
-            if (err) throw err;
-            if (user == null) return res.status(404).json({ message: 'User not found' });
-            return res.json({
-                message: "Profile updated successfully",
-                user,
+        },
+            { new: true },
+            (err, user) => {
+                if (err) throw err;
+                if (user == null) return res.status(404).json({ message: 'User not found' });
+                return res.json({
+                    message: "Profile updated successfully",
+                    user,
+                });
             });
-        });
     }
 
 }
