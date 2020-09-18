@@ -30,12 +30,12 @@ const upload = multer({
 
 
 
-/*  @route     POST api/users/profile/
+/*  @route     POST api/users/profile/add
     @desc      Add new user profile
     @access    Private
  */
 
-router.post('/', auth, ProfileController.create_new_user_profile);
+router.post('/add', auth, ProfileController.create_new_user_profile);
 
 /*  @route     POST api/users/profile/add/image
     @desc      Add new user profile image
