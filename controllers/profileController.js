@@ -60,25 +60,22 @@ exports.update_user_profile = async (req, res) => {
             error: 'Please all fields are required'
         });
     } else {
-        const data = {
-            name: name,
-            profession: profession,
-            dob: dob,
-            title: title,
-            about: about,
-        };
-        UserProfile.findByIdAndUpdate(req.user._id, {
-            $push: { userprofiles: data },
-
-        }, {
-            new: true
-        }).exec((err, user) => {
-            if (err) return res.status(422).json({ error: err })
-            return res.json({
-                message: "Profile updated successfully",
-                user,
+        UserProfile.updateOne({ name: name },
+            { profession: profession },
+            { dob: dob },
+            { title: title },
+            { about: about },
+            { name: name },
+            (err, user) => {
+                if (err) {
+                    return res.status(422).json({ error: err })
+                } else {
+                    return res.json({
+                        message: "Profile updated successfully",
+                        user: user,
+                    });
+                }
             });
-        })
     }
 
 }
