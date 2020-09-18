@@ -67,7 +67,7 @@ exports.update_user_profile = async (req, res) => {
             title: title,
             about: about,
         };
-        UserProfile.findByIdAndUpdate(req.body.postId, {
+        UserProfile.findByIdAndUpdate(req.user._id, {
             $push: { userProfiles: data },
 
         }, {
