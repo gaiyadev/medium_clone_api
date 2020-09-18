@@ -35,7 +35,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.send('Error: Something went wrong', err);
+  res.send('Error: Something went wrong');
 });
 
 module.exports = app;
