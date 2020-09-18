@@ -76,3 +76,15 @@ exports.update_user_profile = (req, res) => {
     }
 
 }
+/**
+ * Getting user profile
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.get_user_profile_data = (req, res) => {
+    UserProfile.findOne({ _id: req.user._id }, (err, user) => {
+        if (err) return res.status(404).json({ err: err });
+        if (user == null) return res.status(404).json({ message: 'User not found' });
+        return res.json({ user: user });
+    });
+}
