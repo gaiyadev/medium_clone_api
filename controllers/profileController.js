@@ -1,24 +1,15 @@
+const e = require("express");
 const UserProfile = require("../models/userProfile");
-
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, "./upload");
-//     },
-//     filename: (req, file) => {
-//         cb(null, req.user.username + ".jpg");
-//     }
-// })
-// const upload = multer({
-//     storage: storage
-// });
 
 /**
  * Add new user profile
- * @param {*} req 
- * @param {*} res 
+ * @param {name} req 
+ *  @param {profession} req
+ *  @param {dob} req
+ *  @param {email} req
+ *  @param {about} req
+ * @param {newUserProfile} res 
  */
-
-
 /**END OF FUNCTION TO HANDLE FILE UPLOAD */
 exports.create_new_user_profile = async (req, res) => {
     const email = req.user.email;
@@ -49,8 +40,12 @@ exports.create_new_user_profile = async (req, res) => {
 
 /**
  * Update users profile
- * @param {*} req 
- * @param {*} res 
+ * @param {name} req
+ *  @param {profession} req
+ *  @param {dob} req
+ *  @param {email} req
+ *  @param {about} req
+ *  @param {data} res
  */
 exports.update_user_profile = async (req, res) => {
     // const { name, profession, dob, title, about } = req.body;

@@ -5,8 +5,8 @@ var router = express.Router();
 
 
 
-/*  @route     POST api/post/add
-    @desc      Add up a user
+/*  @route     POST /api/users/post/add
+    @desc      Add a post
     @access    Private
  */
 
