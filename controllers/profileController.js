@@ -59,30 +59,21 @@ exports.update_user_profile = async (req, res) => {
             error: 'Please all fields are required'
         });
     } else {
-        await UserProfile.findOne({ _id: req.user.email }).then(user => {
-            if (!user) return res.status(404).json({ message: 'User not found' });
-            return res.json({
-                message: "Profile updated successfully",
-                user: user,
+        await UserProfile.updateOne({ _id: req.user._id }, {
+            name: name,
+            profession: profession,
+            dob: dob,
+            title: title,
+            about: about
+        },
+            (err, user) => {
+                if (err) throw err;
+                if (user == null) return res.status(404).json({ message: 'User not found' });
+                return res.json({
+                    message: "Profile updated successfully",
+                    user: user,
+                });
             });
-        }).catch(err => {
-            return res.status(404).json({ message: err });
-        })
-        // await UserProfile.findOne({ _id: req.user._id }, {
-        //     name: name,
-        //     profession: profession,
-        //     dob: dob,
-        //     title: title,
-        //     about: about
-        // },
-        //     (err, user) => {
-        //         if (err) throw err;
-        //         if (user == null) return res.status(404).json({ message: 'User not found' });
-        //         return res.json({
-        //             message: "Profile updated successfully",
-        //             user: user,
-        //         });
-        //     });
     }
 
 }
