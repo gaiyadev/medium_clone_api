@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('../database/db');
 const bcrypt = require('bcrypt');
 
-const PostSchema = Schema({
+const PostSchema = new mongoose.Schema({
     email: {
         type: String
     },
