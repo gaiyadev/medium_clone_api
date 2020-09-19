@@ -85,8 +85,8 @@ exports.update_user_profile = async (req, res) => {
 /**
  * Getting user profily
  * 
- * @param {*} req 
- * @param {*} res 
+ * @param {email} req 
+ * @param {result} res 
  */
 exports.get_user_profile_data = async (req, res) => {
     await UserProfile.findOne({ email: req.user.email }, (err, result) => {

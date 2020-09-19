@@ -50,8 +50,11 @@ exports.sign_in = (req, res) => {
 
 /*
  * *Sign up a new user
- * @param {*} req 
- * @param {*} res 
+ * @param {email} req 
+ * @param {password} req
+ * @param {user} res 
+ * 
+ * 
  */
 exports.sign_up = (req, res) => {
     const { username, email, password } = req.body;

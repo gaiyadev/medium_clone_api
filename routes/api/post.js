@@ -7,8 +7,7 @@ var router = express.Router();
 
 /*  @route     POST /api/users/post/add
     @desc      Add a post
-    @access    Private
- */
+    @access    Private */
 
 router.post('/add', auth, PostController.add_new_post);
 
