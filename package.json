@@ -8,6 +8,12 @@
     "server": "nodemon ./bin/www",
     "dev": "npm run server"
   },
+  "keywords": [
+    "ExpressJS",
+    "Flutter",
+    "Medium",
+    "Api"
+  ],
   "dependencies": {
     "bcrypt": "^5.0.0",
     "config": "^3.3.1",
