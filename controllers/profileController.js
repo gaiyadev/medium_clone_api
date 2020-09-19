@@ -55,7 +55,7 @@ exports.create_new_user_profile = async (req, res) => {
 exports.update_user_profile = async (req, res) => {
     // const { name, profession, dob, title, about } = req.body;
     let profile = {};
-    await Profile.findOne({ email: req.user.email }, (err, result) => {
+    await UserProfile.findOne({ email: req.user.email }, (err, result) => {
         if (err) {
             profile = {};
         }
@@ -63,7 +63,7 @@ exports.update_user_profile = async (req, res) => {
             profile = result;
         }
     });
-    await Profile.findOneAndUpdate(
+    await UserProfile.findOneAndUpdate(
         { email: req.user.email },
         {
             $set: {
