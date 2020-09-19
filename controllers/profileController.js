@@ -53,14 +53,17 @@ exports.create_new_user_profile = async (req, res) => {
  * @param {*} res 
  */
 exports.update_user_profile = async (req, res) => {
+    const email = req.user.email;
+
     const { name, profession, dob, title, about } = req.body;
-    if (!name || !profession || !dob || !title || !about) {
+    if (!email || !name || !profession || !dob || !title || !about) {
         return res.status(400).json({
             error: 'Please all fields are required'
         });
     } else {
         await UserProfile.updateOne({ _id: req.user._id }, {
             name: name,
+            email: email,
             profession: profession,
             dob: dob,
             title: title,
@@ -68,7 +71,7 @@ exports.update_user_profile = async (req, res) => {
         },
             (err, user) => {
                 if (err) throw err;
-                if (user == null) return res.status(404).json({ message: 'User not found' });
+                if (!user) return res.status(404).json({ message: 'User not found' });
                 return res.json({
                     message: "Profile updated successfully",
                     user: user,
@@ -77,6 +80,40 @@ exports.update_user_profile = async (req, res) => {
     }
 
 }
+
+
+
+
+let profile = {};
+await UserProfile.findOne({ _id: req.user._id }, (err, result) => {
+    if (err) {
+        profile = {};
+    }
+    if (result != null) {
+        profile = result;
+    }
+});
+// Profile.findOneAndUpdate(
+//     { _id: req.user._id },
+//     {
+//         $set: {
+//             name: name ? name : profile.name,
+//             profession: profession
+//                 ? profession
+//                 : profile.profession,
+//             dob: dob ? dob : profile.dob,
+//             title: title ? title : profile.title,
+//             about: about ? about : profile.about, //about:""
+//         },
+//     },
+//     { new: true },
+//     (err, result) => {
+//         if (err) return res.json({ err: err });
+//         if (result == null) return res.json({ data: [] });
+//         else return res.json({ data: result });
+//     }
+// );
+
 /**
  * Getting user profily
  * 
