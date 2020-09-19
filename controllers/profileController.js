@@ -61,7 +61,7 @@ exports.update_user_profile = async (req, res) => {
             error: 'Please all fields are required'
         });
     } else {
-        UserProfile.findByIdAndUpdate(req.user_id, {
+        UserProfile.findByIdAndUpdate(req.user._id, {
             name: name,
             email: email,
             profession: profession,
