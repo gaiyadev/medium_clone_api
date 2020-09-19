@@ -61,7 +61,7 @@ exports.update_user_profile = async (req, res) => {
             error: 'Please all fields are required'
         });
     } else {
-        await UserProfile.updateOne({ _id: req.user._id }, {
+        await UserProfile.findOneAndUpdate({ _id: req.user._id }, {
             name: name,
             email: email,
             profession: profession,
