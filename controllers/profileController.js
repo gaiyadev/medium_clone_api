@@ -59,7 +59,7 @@ exports.update_user_profile = async (req, res) => {
             error: 'Please all fields are required'
         });
     } else {
-        await UserProfile.findOne({ _id: req.user._id }).then(user => {
+        await UserProfile.findOne({ _id: req.user.email }).then(user => {
             if (!user) return res.status(404).json({ message: 'User not found' });
             return res.json({
                 message: "Profile updated successfully",
