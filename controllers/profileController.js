@@ -82,38 +82,6 @@ exports.update_user_profile = async (req, res) => {
 }
 
 
-
-
-let profile = {};
-await UserProfile.findOne({ _id: req.user._id }, (err, result) => {
-    if (err) {
-        profile = {};
-    }
-    if (result != null) {
-        profile = result;
-    }
-});
-// Profile.findOneAndUpdate(
-//     { _id: req.user._id },
-//     {
-//         $set: {
-//             name: name ? name : profile.name,
-//             profession: profession
-//                 ? profession
-//                 : profile.profession,
-//             dob: dob ? dob : profile.dob,
-//             title: title ? title : profile.title,
-//             about: about ? about : profile.about, //about:""
-//         },
-//     },
-//     { new: true },
-//     (err, result) => {
-//         if (err) return res.json({ err: err });
-//         if (result == null) return res.json({ data: [] });
-//         else return res.json({ data: result });
-//     }
-// );
-
 /**
  * Getting user profily
  * 
