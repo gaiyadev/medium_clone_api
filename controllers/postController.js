@@ -13,7 +13,7 @@ exports.add_new_post = (req, res) => {
             error: 'Please all fields are required'
         });
     }
-    const newPost = new Ppst({
+    const newPost = new Post({
         email: email,
         title: title,
         body: body,
