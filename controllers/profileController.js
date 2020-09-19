@@ -53,31 +53,36 @@ exports.create_new_user_profile = async (req, res) => {
  * @param {*} res 
  */
 exports.update_user_profile = async (req, res) => {
-    const { name, profession, dob, title, about } = req.body;
-    if (!name || !profession || !dob || !title || !about) {
-        return res.status(400).json({
-            error: 'Please all fields are required'
-        });
-    } else {
-        await UserProfile.updateOne({ email: req.user.email }, {
-            name: name,
-            email: req.user.email,
-            profession: profession,
-            dob: dob,
-            title: title,
-            about: about
+    // const { name, profession, dob, title, about } = req.body;
+    let profile = {};
+    await Profile.findOne({ email: req.user.email }, (err, result) => {
+        if (err) {
+            profile = {};
+        }
+        if (result != null) {
+            profile = result;
+        }
+    });
+    await Profile.findOneAndUpdate(
+        { email: req.user.email },
+        {
+            $set: {
+                name: req.body.name ? req.body.name : profile.name,
+                profession: req.body.profession
+                    ? req.body.profession
+                    : profile.profession,
+                dob: req.body.dob ? req.body.dob : profile.dob,
+                title: req.body.title ? req.body.title : profile.title,
+                about: req.body.about ? req.body.about : profile.about, //about:""
+            },
         },
-            (err, user) => {
-                if (err) return res.status(403).json({ message: err });
-
-                if (!user) return res.status(404).json({ message: 'User not found' });
-
-                return res.json({
-                    message: "Profile updated successfully",
-                    user: user,
-                });
-            });
-    }
+        { new: true },
+        (err, result) => {
+            if (err) return res.json({ err: err });
+            if (!result) return res.json({ data: [] });
+            else return res.json({ data: result });
+        }
+    );
 
 }
 
@@ -89,9 +94,9 @@ exports.update_user_profile = async (req, res) => {
  * @param {*} res 
  */
 exports.get_user_profile_data = async (req, res) => {
-    await UserProfile.findOne({ _id: req.user.email }, (err, user) => {
-        if (err) return res.status(404).json({ err: err });
-        if (!user) return res.status(404).json({ message: 'User not found' });
-        return res.json({ user: user });
+    await UserProfile.findOne({ email: req.user.email }, (err, result) => {
+        if (err) return res.json({ err: err });
+        if (!result) return res.json({ data: [] });
+        else return res.json({ data: result });
     });
 }
