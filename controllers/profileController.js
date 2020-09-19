@@ -53,17 +53,15 @@ exports.create_new_user_profile = async (req, res) => {
  * @param {*} res 
  */
 exports.update_user_profile = async (req, res) => {
-    const email = req.user.email;
-
     const { name, profession, dob, title, about } = req.body;
-    if (!email || !name || !profession || !dob || !title || !about) {
+    if (!name || !profession || !dob || !title || !about) {
         return res.status(400).json({
             error: 'Please all fields are required'
         });
     } else {
-        await UserProfile.findByIdAndUpdate(req.user._id, {
+        await UserProfile.updateOne(req.user.email, {
             name: name,
-            email: email,
+            email: req.user.email,
             profession: profession,
             dob: dob,
             title: title,
@@ -78,23 +76,7 @@ exports.update_user_profile = async (req, res) => {
                     message: "Profile updated successfully",
                     user: user,
                 });
-
             });
-        // await UserProfile.updateOne({ _id: req.user._id }, {
-        //     name: name,
-        //     email: email,
-        //     profession: profession,
-        //     dob: dob,
-        //     title: title,
-        //     about: about
-        // }, (err, user) => {
-        //     if (err) throw err;
-        //     if (!user) return res.status(404).json({ message: 'User not found' });
-        //     return res.json({
-        //         message: "Profile updated successfully",
-        //         user: user,
-        //     });
-        // });
     }
 
 }
@@ -107,9 +89,9 @@ exports.update_user_profile = async (req, res) => {
  * @param {*} res 
  */
 exports.get_user_profile_data = async (req, res) => {
-    await UserProfile.findOne({ _id: req.user._id }, (err, user) => {
+    await UserProfile.findOne({ _id: req.user.email }, (err, user) => {
         if (err) return res.status(404).json({ err: err });
-        if (user == null) return res.status(404).json({ message: 'User not found' });
+        if (!user) return res.status(404).json({ message: 'User not found' });
         return res.json({ user: user });
     });
 }
